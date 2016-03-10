@@ -2,6 +2,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,11 +18,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 public class Main {
 	
 	public static int myWidth = 600;
-	public static int myHeight = 1000;
+	public static int myHeight = 800;
 	public static JFrame frame;
 
 	public static void main(String[] args) {
@@ -37,19 +42,15 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public static void createLoginPanel() {
-//		JPanel loginPanel = new JPanel(null);
-//		JLabel loginLabel = new JLabel("Login");
-//		loginLabel.setFont(new Font("Serif", Font.BOLD, 20));
-//		loginLabel.setLocation(300, 100);
-//		loginPanel.add(loginLabel);
-
+	public static void stopEclipeFromRunning() {
 		
+	}
+	
+	public static void createLoginPanel() {	
 		JPanel panel = new JPanel();
 		frame.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-
 		JLabel userLabel = new JLabel("User");
 		userLabel.setBounds(10, 10, 80, 25);
 		panel.add(userLabel);
@@ -65,14 +66,21 @@ public class Main {
 		JPasswordField passwordText = new JPasswordField(20);
 		passwordText.setBounds(100, 40, 160, 25);
 		panel.add(passwordText);
-
-		JButton loginButton = new JButton("register");
-		loginButton.setBounds(10, 80, 80, 25);
-		panel.add(loginButton);
 		
-		JButton registerButton = new JButton("login");
-		registerButton.setBounds(180, 80, 80, 25);
+		JButton registerButton = new JButton("register");
+		registerButton.setBounds(10, 80, 80, 25);
 		panel.add(registerButton);
+		
+		JButton loginButton = new JButton("login");
+		panel.add(loginButton);
+		loginButton.setBounds(180, 80, 80, 25);
+		loginButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Database dataPage = new Database();
+			}
+		});
+
 		
 	}
 	
@@ -88,7 +96,7 @@ public class Main {
 		logoPanel.add(logoLabel);
 		frame.add(logoPanel, BorderLayout.NORTH);		
 	}
-
+	
 }
 
 
