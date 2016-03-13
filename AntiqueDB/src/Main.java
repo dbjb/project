@@ -36,6 +36,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		HashMap userMap = new HashMap();
+		userMap.put("", "");  // for testing only remove later.
 		//create Frame
 		frame = new JFrame("AntiqueDB");
 		frame.setLayout(new BorderLayout());
@@ -108,7 +109,7 @@ public class Main {
 					JOptionPane.showMessageDialog(frame, "Wrong Username or Password");
 				} else if(userMap.containsKey(myName)) {
 					if(userMap.get(myName).equals(myPassword)) {
-						Database dataPage = new Database();
+						Database dataPage = new Database(userMap);
 					} else {
 						JOptionPane.showMessageDialog(frame, "Wrong Username or Password");
 					}
