@@ -28,26 +28,12 @@ public class Database {
 		frame.setPreferredSize(new Dimension(myWidth,myHeight));
 		frame.setLocationRelativeTo(null);
 
-		createLogoPanel();
+		LogoPanel logoPanel = new LogoPanel();
+		frame.add(logoPanel, BorderLayout.NORTH);
 		
 		frame.pack();
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
-
-	
-	public static void createLogoPanel() {
-		JPanel logoPanel = new JPanel();
-		logoPanel.setBackground(Color.WHITE);
-		BufferedImage logo = null;
-		try {
-			logo = ImageIO.read(new File("antique-trader-logo.jpg"));
-		} catch (IOException e) {
-		}
-		JLabel logoLabel = new JLabel(new ImageIcon(logo));
-		logoPanel.add(logoLabel);
-		frame.add(logoPanel, BorderLayout.NORTH);		
+		frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
 	}
 
 }
