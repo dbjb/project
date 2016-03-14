@@ -36,8 +36,7 @@ public class Database extends JFrame{
 		backPanel.setLayout(new BorderLayout());
 		this.add(backPanel, BorderLayout.CENTER);
 		
-		NorthPanel north = new NorthPanel(this.itemList);
-		backPanel.add(north, BorderLayout.NORTH);
+
 		
 		WestPanel left = new WestPanel(this.itemList);
 		backPanel.add(left, BorderLayout.WEST);
@@ -47,6 +46,9 @@ public class Database extends JFrame{
 		
 		EastPanel right = new EastPanel(this.itemList);
 		backPanel.add(right, BorderLayout.EAST);
+		
+		NorthPanel north = new NorthPanel(this.itemList);
+		backPanel.add(north, BorderLayout.NORTH);
 		
 	}
 

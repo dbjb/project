@@ -4,6 +4,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -13,6 +15,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class WestPanel extends JPanel{
 
@@ -30,23 +34,27 @@ public class WestPanel extends JPanel{
 		back.add(label1);
 		this.add(back, BorderLayout.NORTH);
 		
-		String abc[] = {"abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz"};
+		String array[] = new String[itemList.size()];
 		
-
-		Iterator<Item> itr = this.itemList.iterator();
-		while(itr.hasNext()) {
-			System.out.println("Printing from WestPanel = " + itr.next().toString());
+		for(int i = 0; i < itemList.size(); i++) {
+			array[i] = itemList.get(i).itemName;
 		}
-		this.itemList.remove(this.itemList.get(0));
-		
 		
 		JPanel third = new JPanel();
-		JList itemList = new JList(abc);
-		itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		itemList.setLayoutOrientation(JList.VERTICAL);
-		itemList.setVisibleRowCount(-1);
+		JList myList = new JList(array);
+		myList.addListSelectionListener(new ListSelectionListener(){
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				
+			}
+			
+		});
+		myList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		myList.setLayoutOrientation(JList.VERTICAL);
+		myList.setVisibleRowCount(-1);
 		JScrollPane listScroller = new JScrollPane();
-		listScroller.setViewportView(itemList);
+		listScroller.setViewportView(myList);
 		listScroller.setPreferredSize(new Dimension(270, 150));
 		
 		JPanel backPanel = new JPanel();
@@ -57,5 +65,16 @@ public class WestPanel extends JPanel{
 		JPanel back2 = new JPanel();
 		back2.add(button);
 		this.add(back2, BorderLayout.SOUTH);
+		
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				for(Item e: itemList) {
+					System.out.println(e.toString());
+				}
+			}
+			
+		});
 	}
 }
