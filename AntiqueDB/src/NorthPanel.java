@@ -4,9 +4,9 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class NorthDBPanel extends JPanel{
+public class NorthPanel extends JPanel{
 
-	public NorthDBPanel() {
+	public NorthPanel() {
 		
 		makePanel();
 	}
@@ -17,8 +17,8 @@ public class NorthDBPanel extends JPanel{
 		JButton b2 = new JButton("Edit");
 		JButton b3 = new JButton("Delete");
 		JButton b4 = new JButton("Filter");
-		JButton b5 = new JButton("Export");
-		JButton b6 = new JButton("Print");
+		JButton b5 = new JButton("Sort");
+		JButton b6 = new JButton("Save As");
 		this.add(b1);
 		this.add(b2);
 		this.add(b3);

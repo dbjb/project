@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -32,11 +33,32 @@ public class Main {
 	public static int myWidth = 600;
 	public static int myHeight = 800;
 	public static JFrame frame;
-
+	
+	
 	public static void main(String[] args) {
 
 		HashMap userMap = new HashMap();
 		userMap.put("", "");  // for testing only remove later.
+		
+//		ArrayList<String> itemsArrayList = new ArrayList<String>();
+//		int count = 0;
+//		for(int i = 0; i < 40; i++) {
+//			count++;
+//			
+//			itemsArrayList.add("test" + count);
+//		}
+		
+		Item one = new Item(0, "antique bottle", "steven", "jan 5 2016", "this is a bottle");
+		ArrayList<Item> itemList = new ArrayList<Item>();
+		itemList.add(one);
+		for(int i = 0; i < itemList.size(); i++) {
+			System.out.println(itemList.get(i).toString());
+		}
+		
+		
+//		String itemsList[] = itemsArrayList.toArray(new String[itemsArrayList.size()]);
+		
+		
 		//create Frame
 		frame = new JFrame("AntiqueDB");
 		frame.setLayout(new BorderLayout());

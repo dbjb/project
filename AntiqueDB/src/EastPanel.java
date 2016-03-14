@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-public class RightDBPanel extends JPanel{
+public class EastPanel extends JPanel{
 	
-	public RightDBPanel() {
+	public EastPanel() {
 		super();
 		makePanel();
 	}
