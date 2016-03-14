@@ -47,17 +47,17 @@ public class Main {
 //			
 //			itemsArrayList.add("test" + count);
 //		}
+//		String itemsList[] = itemsArrayList.toArray(new String[itemsArrayList.size()]);
 		
 		Item one = new Item(0, "antique bottle", "steven", "jan 5 2016", "this is a bottle");
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		itemList.add(one);
 		for(int i = 0; i < itemList.size(); i++) {
-			System.out.println(itemList.get(i).toString());
+			System.out.println("Printing from Main = " + itemList.get(i).toString());
 		}
-		
-		
-//		String itemsList[] = itemsArrayList.toArray(new String[itemsArrayList.size()]);
-		
+		Item two = new Item(1, "antique painting", "mark", "feb 10 2015", "this is a painting");
+		itemList.add(two);
+
 		
 		//create Frame
 		frame = new JFrame("AntiqueDB");
@@ -67,7 +67,7 @@ public class Main {
 
 		LogoPanel logoPanel = new LogoPanel();
 		frame.add(logoPanel, BorderLayout.NORTH);
-		createLoginPanel(userMap);
+		createLoginPanel(userMap, itemList);
 
 		frame.pack();
 		frame.setVisible(true);
@@ -80,7 +80,7 @@ public class Main {
 
 	}
 
-	public static void createLoginPanel(HashMap userMap) {
+	public static void createLoginPanel(HashMap userMap, ArrayList<Item> theItemList) {
 
 		JPanel panel = new JPanel();
 		frame.add(panel, BorderLayout.CENTER);
@@ -131,7 +131,7 @@ public class Main {
 					JOptionPane.showMessageDialog(frame, "Wrong Username or Password");
 				} else if(userMap.containsKey(myName)) {
 					if(userMap.get(myName).equals(myPassword)) {
-						Database dataPage = new Database(userMap);
+						Database dataPage = new Database(userMap, theItemList);
 					} else {
 						JOptionPane.showMessageDialog(frame, "Wrong Username or Password");
 					}

@@ -11,8 +11,10 @@ import javax.swing.ListSelectionModel;
 
 public class SouthPanel extends JPanel{
 
-	public SouthPanel() {
+	public ArrayList<Item> itemList;
+	public SouthPanel(ArrayList<Item> theItemList) {
 		super();
+		this.itemList = theItemList;
 		makePanel();
 	}
 	
@@ -20,17 +22,9 @@ public class SouthPanel extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.setVisible(true);
 		
-		JLabel label = new JLabel("Detailed Description");
+		JLabel label = new JLabel("Selected Items Detailed Description");
 		JPanel back = new JPanel();
-		back.setLayout(new BorderLayout());
-		JPanel backtop = new JPanel();
-		backtop.add(label);
-		back.add(backtop, BorderLayout.NORTH);
-		
-		JLabel label2 = new JLabel("descriptions category");
-		JPanel backbottom = new JPanel();
-		backbottom.add(label2);
-		back.add(backbottom, BorderLayout.SOUTH);
+		back.add(label);
 		
 		this.add(back, BorderLayout.NORTH);
 

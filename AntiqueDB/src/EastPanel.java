@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,8 +11,10 @@ import javax.swing.ListSelectionModel;
 
 public class EastPanel extends JPanel{
 	
-	public EastPanel() {
+	ArrayList<Item> itemList;
+	public EastPanel(ArrayList<Item> theItemList) {
 		super();
+		this.itemList = theItemList;
 		makePanel();
 	}
 	

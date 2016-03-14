@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,10 +11,10 @@ public class Database extends JFrame{
 	
 	public static int myWidth = 600;
 	public static int myHeight = 800;
-
-	public Database(HashMap userMap) {
-
+	ArrayList<Item> itemList;
+	public Database(HashMap userMap, ArrayList<Item> theItemList) {
 		super();
+		this.itemList = theItemList;
 		createWindow();
 	}
 	
@@ -35,16 +36,16 @@ public class Database extends JFrame{
 		backPanel.setLayout(new BorderLayout());
 		this.add(backPanel, BorderLayout.CENTER);
 		
-		NorthPanel north = new NorthPanel();
+		NorthPanel north = new NorthPanel(this.itemList);
 		backPanel.add(north, BorderLayout.NORTH);
 		
-		WestPanel left = new WestPanel();
+		WestPanel left = new WestPanel(this.itemList);
 		backPanel.add(left, BorderLayout.WEST);
 		
-		SouthPanel bottom = new SouthPanel();
+		SouthPanel bottom = new SouthPanel(this.itemList);
 		backPanel.add(bottom, BorderLayout.SOUTH);
 		
-		EastPanel right = new EastPanel();
+		EastPanel right = new EastPanel(this.itemList);
 		backPanel.add(right, BorderLayout.EAST);
 		
 	}

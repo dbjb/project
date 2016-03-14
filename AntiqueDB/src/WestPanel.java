@@ -4,6 +4,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,8 +16,10 @@ import javax.swing.ListSelectionModel;
 
 public class WestPanel extends JPanel{
 
-	public WestPanel() {
+	public ArrayList<Item> itemList;
+	public WestPanel(ArrayList<Item> theItemList) {
 		super();
+		this.itemList = theItemList;
 		makePanel();
 	}
 	
@@ -27,6 +31,14 @@ public class WestPanel extends JPanel{
 		this.add(back, BorderLayout.NORTH);
 		
 		String abc[] = {"abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz"};
+		
+
+		Iterator<Item> itr = this.itemList.iterator();
+		while(itr.hasNext()) {
+			System.out.println("Printing from WestPanel = " + itr.next().toString());
+		}
+		this.itemList.remove(this.itemList.get(0));
+		
 		
 		JPanel third = new JPanel();
 		JList itemList = new JList(abc);
