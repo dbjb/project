@@ -38,16 +38,19 @@ public class Database extends JFrame{
 		
 
 		
-		WestPanel left = new WestPanel(this.itemList);
-		backPanel.add(left, BorderLayout.WEST);
+		WestPanel west = new WestPanel(this.itemList);
+		backPanel.add(west, BorderLayout.WEST);
 		
-		SouthPanel bottom = new SouthPanel(this.itemList);
-		backPanel.add(bottom, BorderLayout.SOUTH);
+		SouthPanel south = new SouthPanel(this.itemList);
+		backPanel.add(south, BorderLayout.SOUTH);
 		
-		EastPanel right = new EastPanel(this.itemList);
-		backPanel.add(right, BorderLayout.EAST);
+		EastPanel east = new EastPanel(this.itemList);
+		backPanel.add(east, BorderLayout.EAST);
 		
-		NorthPanel north = new NorthPanel(this.itemList);
+		CenterPanel center = new CenterPanel(west, east, south);
+		backPanel.add(center, BorderLayout.CENTER);
+		
+		NorthPanel north = new NorthPanel(this.itemList, center);
 		backPanel.add(north, BorderLayout.NORTH);
 		
 	}

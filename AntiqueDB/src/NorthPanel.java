@@ -12,9 +12,11 @@ import javax.swing.JPanel;
 public class NorthPanel extends JPanel{
 
 	ArrayList<Item> itemList;
-	public NorthPanel(ArrayList<Item> theItemList) {
+	CenterPanel center;
+	public NorthPanel(ArrayList<Item> theItemList, CenterPanel center) {
 
 		super();
+		this.center = center;
 		this.itemList = theItemList;
 		makePanel();
 	}
@@ -94,6 +96,8 @@ public class NorthPanel extends JPanel{
 				
 				Item newItem = new Item(ID, itemName, maker, date, description);
 				itemList.add(newItem);
+				
+				center.west.getListModel().addElement(newItem.itemName);
 				
 				for(Item e: itemList) {
 					System.out.println(e.toString());

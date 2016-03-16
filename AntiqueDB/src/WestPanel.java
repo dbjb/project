@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -20,61 +22,65 @@ import javax.swing.event.ListSelectionListener;
 
 public class WestPanel extends JPanel{
 
-	public ArrayList<Item> itemList;
+	public static String something;
+	private ArrayList<Item> itemList;
+	private DefaultListModel model;
+	private ArrayList<String> selectedAntiquesList = new ArrayList<String>();
 	public WestPanel(ArrayList<Item> theItemList) {
 		super();
 		this.itemList = theItemList;
 		makePanel();
 	}
-	
+
 	public void makePanel() {
 		this.setLayout(new BorderLayout());
 		JLabel label1 = new JLabel("Antique Item List");
 		JPanel back = new JPanel();
 		back.add(label1);
 		this.add(back, BorderLayout.NORTH);
-		
-		String array[] = new String[itemList.size()];
-		
-		for(int i = 0; i < itemList.size(); i++) {
-			array[i] = itemList.get(i).itemName;
+
+		model = new DefaultListModel();
+		for(Item e: itemList) {
+			model.addElement(e.itemName);
 		}
-		
-		JPanel third = new JPanel();
-		JList myList = new JList(array);
+
+		JList myList = new JList(model);
+
 		myList.addListSelectionListener(new ListSelectionListener(){
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				
+				selectedAntiquesList.clear();
+				boolean adjust = myList.getValueIsAdjusting();
+				if(!adjust) {
+
+					List selected = myList.getSelectedValuesList();
+					for(int i = 0; i < selected.size(); i++) {
+						selectedAntiquesList.add(selected.get(i).toString());
+					}
+					System.out.println(selectedAntiquesList);
+				}
 			}
-			
+
 		});
 		myList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		myList.setLayoutOrientation(JList.VERTICAL);
 		myList.setVisibleRowCount(-1);
 		JScrollPane listScroller = new JScrollPane();
 		listScroller.setViewportView(myList);
-		listScroller.setPreferredSize(new Dimension(270, 150));
-		
+		listScroller.setPreferredSize(new Dimension(230, 200));
+
 		JPanel backPanel = new JPanel();
 		backPanel.add(listScroller);
 		this.add(backPanel, BorderLayout.CENTER);
-		
-		JButton button = new JButton("Move Right ==>");
-		JPanel back2 = new JPanel();
-		back2.add(button);
-		this.add(back2, BorderLayout.SOUTH);
-		
-		button.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				for(Item e: itemList) {
-					System.out.println(e.toString());
-				}
-			}
-			
-		});
+
+	}
+
+	public DefaultListModel getListModel() {
+		return model;
+	}
+	public ArrayList<String> getSelectedAntiques() {
+		return selectedAntiquesList;
 	}
 }

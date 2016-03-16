@@ -57,6 +57,13 @@ public class Main {
 		}
 		Item two = new Item(1, "antique painting", "mark", "feb 10 2015", "this is a painting");
 		itemList.add(two);
+		
+		Item three = new Item(2, "antique toy", "mark", "feb 10 2015", "this is a painting");
+		itemList.add(three);
+		Item four = new Item(3, "antique dinosaur", "mark", "feb 10 2015", "this is a painting");
+		itemList.add(four);
+		Item five = new Item(4, "antique fang", "mark", "feb 10 2015", "this is a painting");
+		itemList.add(five);
 
 		
 		//create Frame
