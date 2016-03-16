@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -9,11 +10,14 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class EastPanel extends JPanel{
 	
 	ArrayList<Item> itemList;
 	private DefaultListModel model;
+	private ArrayList<String> selectedItemsList = new ArrayList<String>();
 	public EastPanel(ArrayList<Item> theItemList) {
 		super();
 		this.itemList = theItemList;
@@ -28,16 +32,10 @@ public class EastPanel extends JPanel{
 		this.add(back, BorderLayout.NORTH);
 		
 		model = new DefaultListModel();
-//		for(Item e: itemList) {
-//			model.addElement(e.itemName);
-//		}
 		
 		JList itemList = new JList(model);
 		
-		String abc[] = {"abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz"};
-		
 		JPanel third = new JPanel();
-//		JList itemList = new JList(abc);
 		itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		itemList.setLayoutOrientation(JList.VERTICAL);
 		itemList.setVisibleRowCount(-1);
@@ -49,10 +47,32 @@ public class EastPanel extends JPanel{
 		backPanel.add(listScroller);
 		this.add(backPanel, BorderLayout.CENTER);
 		
+		itemList.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				selectedItemsList.clear();
+				boolean adjust = itemList.getValueIsAdjusting();
+				if(!adjust) {
+
+					List selected = itemList.getSelectedValuesList();
+					for(int i = 0; i < selected.size(); i++) {
+						selectedItemsList.add(selected.get(i).toString());
+					}
+					System.out.println("Selected Items: " + selectedItemsList);
+				}
+				
+			}
+			
+		});
+		
 	}
 	
 	public DefaultListModel getListModel() {
 		return model;
+	}
+	public ArrayList<String> getSelectedItemsList() {
+		return selectedItemsList;
 	}
 
 }

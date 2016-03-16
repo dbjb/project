@@ -30,7 +30,7 @@ public class CenterPanel extends JPanel{
 		JButton b1 = new JButton("Move Right");
 		JButton b2 = new JButton(" Move Left ");
 		
-		gc.insets = new Insets(5,5,5,5);
+		gc.insets = new Insets(30,5,30,5);
 		gc.gridx = 0;
 		gc.gridy = 0;
 		this.add(b1, gc);
@@ -47,13 +47,32 @@ public class CenterPanel extends JPanel{
 					for(int j = 0; j < west.getSelectedAntiques().size(); j++){
 						if(west.getListModel().get(i).equals(west.getSelectedAntiques().get(j))) {
 							
-							System.out.println(west.getSelectedAntiques());
+//							System.out.println(west.getSelectedAntiques());
 							east.getListModel().addElement(west.getSelectedAntiques().get(j));
 							west.getListModel().remove(i);
 						}
 					}
 				}
 				
+			}
+			
+		});
+		
+		b2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				for(int i = east.getListModel().size() - 1; i >= 0; i--) {
+					for(int j = 0; j < east.getSelectedItemsList().size(); j++){
+						if(east.getListModel().get(i).equals(east.getSelectedItemsList().get(j))) {
+							
+//							System.out.println(west.getSelectedAntiques());
+							west.getListModel().addElement(east.getSelectedItemsList().get(j));
+							east.getListModel().remove(i);
+						}
+					}
+				}
 			}
 			
 		});

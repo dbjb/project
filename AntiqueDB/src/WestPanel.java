@@ -58,7 +58,7 @@ public class WestPanel extends JPanel{
 					for(int i = 0; i < selected.size(); i++) {
 						selectedAntiquesList.add(selected.get(i).toString());
 					}
-					System.out.println(selectedAntiquesList);
+//					System.out.println(selectedAntiquesList);
 				}
 			}
 
