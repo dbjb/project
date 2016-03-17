@@ -5,6 +5,8 @@
 import java.sql.*;
 import java.util.Vector;
 
+import com.mysql.jdbc.Statement;
+
 
 // Connection class that handels DB connection.
 public class DBConnection {
@@ -25,6 +27,43 @@ public class DBConnection {
 	       }
 	 } // end Initialization
 	
+		public void getALL(){
+
+			StringBuilder sb = new StringBuilder();
+			Statement statement;
+			int theID;
+			String theItemName;
+			String theDes;
+			String category;
+			int thePrice;
+			
+			
+			try {
+				statement = (Statement) Conn.createStatement();
+				String queryString; 
+				queryString = "SELECT * FROM Item";
+
+				ResultSet rset = statement.executeQuery(queryString);
+
+				while(rset.next()) {
+					theID = rset.getInt(1);
+					theItemName = rset.getString(2);
+					theDes = rset.getString(3);
+					category = rset.getString(4);
+					thePrice = rset.getInt(5);
+					
+					System.out.println("The ID is : " + theID);
+					System.out.println("The ID is : " + theItemName);
+					System.out.println("The ID is : " + theDes);
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	 
 	// run query
 //	public String SelectQuery(String query){
 //	    Statement statement;
