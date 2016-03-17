@@ -49,6 +49,8 @@ public class Main {
 //		}
 //		String itemsList[] = itemsArrayList.toArray(new String[itemsArrayList.size()]);
 		
+		DatabaseAccess connection = new DatabaseAccess();
+		
 		Item one = new Item(0, "antique bottle", "steven", "jan 5 2016", "this is a bottle");
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		itemList.add(one);
