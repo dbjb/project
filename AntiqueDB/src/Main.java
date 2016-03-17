@@ -48,7 +48,7 @@ public class Main {
 //			itemsArrayList.add("test" + count);
 //		}
 //		String itemsList[] = itemsArrayList.toArray(new String[itemsArrayList.size()]);
-		
+		// hi
 		DatabaseAccess connection = new DatabaseAccess();
 		
 		DatabaseAccess.getALL();
