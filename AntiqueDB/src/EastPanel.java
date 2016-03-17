@@ -59,7 +59,7 @@ public class EastPanel extends JPanel{
 					for(int i = 0; i < selected.size(); i++) {
 						selectedItemsList.add(selected.get(i).toString());
 					}
-					System.out.println("Selected Items: " + selectedItemsList);
+//					System.out.println("Selected Items: " + selectedItemsList);
 				}
 				
 			}

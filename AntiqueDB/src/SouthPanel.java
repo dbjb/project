@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -12,6 +13,7 @@ import javax.swing.ListSelectionModel;
 public class SouthPanel extends JPanel{
 
 	public ArrayList<Item> itemList;
+	private DefaultListModel model;
 	public SouthPanel(ArrayList<Item> theItemList) {
 		super();
 		this.itemList = theItemList;
@@ -27,19 +29,11 @@ public class SouthPanel extends JPanel{
 		back.add(label);
 		
 		this.add(back, BorderLayout.NORTH);
-
-		ArrayList<String> itemsArrayList = new ArrayList<String>();
-		int count = 0;
-		for(int i = 0; i < 40; i++) {
-			count++;
-			
-			itemsArrayList.add("test" + count);
-		}
 		
-		String itemsList[] = itemsArrayList.toArray(new String[itemsArrayList.size()]);
+		model = new DefaultListModel();
 		
 		JPanel third = new JPanel();
-		JList items = new JList(itemsList);
+		JList items = new JList(model);
 		items.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		items.setLayoutOrientation(JList.VERTICAL);
 		items.setVisibleRowCount(-1);
@@ -50,5 +44,13 @@ public class SouthPanel extends JPanel{
 		JPanel backPanel = new JPanel();
 		backPanel.add(listScroller);
 		this.add(backPanel, BorderLayout.CENTER);
+	}
+	
+	public DefaultListModel getListModel() {
+		return model;
+	}
+	
+	public void setListModel(String item) {
+		model.addElement(item);
 	}
 }

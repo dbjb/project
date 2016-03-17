@@ -14,9 +14,11 @@ public class CenterPanel extends JPanel{
 	WestPanel west;
 	EastPanel east;
 	SouthPanel south;
+	ArrayList<Item> itemList;
 	
-	public CenterPanel(WestPanel west, EastPanel east, SouthPanel south) {
+	public CenterPanel(WestPanel west, EastPanel east, SouthPanel south, ArrayList<Item> itemList) {
 		super();
+		this.itemList = itemList;
 		this.west = west;
 		this.east = east;
 		this.south = south;
@@ -54,6 +56,28 @@ public class CenterPanel extends JPanel{
 					}
 				}
 				
+				for(int i = 0; i < east.getListModel().size(); i++) {
+					boolean exist = false;
+					for(int j = 0; j < south.getListModel().size(); j++) {
+						if(east.getListModel().getElementAt(i).equals(south.getListModel().getElementAt(j))) {
+							exist = true;
+						}
+					}
+					if(exist == false) {
+						for(int j = 0; j < itemList.size(); j++) {
+							if(east.getListModel().getElementAt(i).equals(itemList.get(j).itemName)) {
+								int ID = itemList.get(j).ID;
+								String name = itemList.get(j).itemName;
+								String maker = itemList.get(j).maker;
+								String date = itemList.get(j).date;
+								String description = itemList.get(j).description;
+								System.out.println("entered here");
+								south.setListModel("ID: " + ID + "   Name: " + name + "   Maker: " + maker + "   Date: " + date + "   Description: " + description);
+							}
+						}
+					}
+				}
+				
 			}
 			
 		});
@@ -73,6 +97,28 @@ public class CenterPanel extends JPanel{
 						}
 					}
 				}
+				
+//				for(int i = 0; i < east.getListModel().size(); i++) {
+//					boolean exist = false;
+//					for(int j = 0; j < south.getListModel().size(); j++) {
+//						if(east.getListModel().getElementAt(i).equals(south.getListModel().getElementAt(j))) {
+//							exist = true;
+//						}
+//					}
+//					if(exist == false) {
+//						for(int j = 0; j < itemList.size(); j++) {
+//							if(east.getListModel().getElementAt(i).equals(itemList.get(j).itemName)) {
+//								int ID = itemList.get(j).ID;
+//								String name = itemList.get(j).itemName;
+//								String maker = itemList.get(j).maker;
+//								String date = itemList.get(j).date;
+//								String description = itemList.get(j).description;
+//								System.out.println("entered here");
+//								south.setListModel("ID: " + ID + "   Name: " + name + "   Maker: " + maker + "   Date: " + date + "   Description: " + description);
+//							}
+//						}
+//					}
+//				}
 			}
 			
 		});
