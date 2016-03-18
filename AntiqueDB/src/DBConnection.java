@@ -98,6 +98,79 @@ public class DBConnection {
 			}			
 		}
 		
+		public void updateItem(String field, String updatedField, String theItemName) {
+			Statement statement;
+			try {
+				statement = (Statement) Conn.createStatement();
+				String queryString; 
+				
+				//JDBC - Insert Records Example :  http://www.tutorialspoint.com/jdbc/jdbc-insert-records.htm
+				//String query = "update users set num_points = ? where first_name = ?";
+				//SET ContactName='Alfred Schmidt', City='Hamburg';
+				queryString = "update Item "
+						+ "set " + field +  " = '" + updatedField + "'"
+						+ " where Item_Name = '" + theItemName + "'";
+
+				System.out.println("queryString : " + queryString);
+				
+				int rset = statement.executeUpdate(queryString);
+				
+				System.out.println("Insert result : " + rset);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}		
+		}
+		
+		
+		public void deleteItem(String theItemName) {
+			Statement statement;
+			try {
+				statement = (Statement) Conn.createStatement();
+				String queryString; 
+				
+				//DELETE FROM Customer WHERE CustomerName='Alfreds Futterkiste' AND ContactName='Maria Anders';
+				queryString = "DELETE FROM Item " +
+						"WHERE Item_Name = '" +  theItemName + "';";
+                
+				
+				System.out.println("queryString : " + queryString);
+				int rset = statement.executeUpdate(queryString);
+				System.out.println("Insert result : " + rset);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		public ArrayList<String> sortItem() {
+			
+			ArrayList<String> tempItemList = new ArrayList<>();
+			
+			Statement statement;
+			try {
+				statement = (Statement) Conn.createStatement();
+				String queryString; 
+				
+				//DELETE FROM Customer WHERE CustomerName='Alfreds Futterkiste' AND ContactName='Maria Anders';
+				queryString = "select Item_Name from Item order by Item_Name";
+                
+				
+				ResultSet rset = statement.executeQuery(queryString);
+				
+				while(rset.next()) {
+					tempItemList.add(rset.getString(1));
+					System.out.println(rset.getString(1));
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+			
+			return tempItemList;
+		}
+		
 		
 		
 		
