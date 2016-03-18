@@ -49,45 +49,15 @@ public class Main {
 //		}
 //		String itemsList[] = itemsArrayList.toArray(new String[itemsArrayList.size()]);
 		// hi
-		DatabaseAccess connection = new DatabaseAccess();
-		
-		DatabaseAccess.getALL();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		Item one = new Item(0, "antique bottle", "steven", "jan 5 2016", "this is a bottle");
 		ArrayList<Item> itemList = new ArrayList<Item>();
-		itemList.add(one);
+		DatabaseAccess connection = new DatabaseAccess();
+		DatabaseAccess.getALL(itemList);
+		
+	
 		for(int i = 0; i < itemList.size(); i++) {
 			System.out.println("Printing from Main = " + itemList.get(i).toString());
 		}
-		Item two = new Item(1, "antique painting", "mark", "feb 10 2015", "this is a painting");
-		itemList.add(two);
 		
-		Item three = new Item(2, "antique toy", "mark", "feb 10 2015", "this is a painting");
-		itemList.add(three);
-		Item four = new Item(3, "antique dinosaur", "mark", "feb 10 2015", "this is a painting");
-		itemList.add(four);
-		Item five = new Item(4, "antique fang", "mark", "feb 10 2015", "this is a painting");
-		itemList.add(five);
 
 		
 		//create Frame

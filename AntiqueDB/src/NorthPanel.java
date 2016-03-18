@@ -13,8 +13,9 @@ public class NorthPanel extends JPanel{
 
 	ArrayList<Item> itemList;
 	CenterPanel center;
+	
+	
 	public NorthPanel(ArrayList<Item> theItemList, CenterPanel center) {
-
 		super();
 		this.center = center;
 		this.itemList = theItemList;
@@ -96,6 +97,9 @@ public class NorthPanel extends JPanel{
 				
 				Item newItem = new Item(ID, itemName, maker, date, description);
 				itemList.add(newItem);
+				DatabaseAccess.addItem(ID, itemName, maker, date, description);
+				
+				
 				
 				center.west.getListModel().addElement(newItem.itemName);
 				

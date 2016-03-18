@@ -1,5 +1,6 @@
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -16,8 +17,13 @@ public class DatabaseAccess {
 	//   ); 
 	static DBConnection db = new DBConnection(connectionUrl, connectionUser, connectionPassword);
 
-	public static void getALL(){
-		db.getALL();
+	public static void getALL(ArrayList<Item> list){
+		db.getALL(list);
+	}
+	
+	public static void addItem(int id, String itemName, String maker, String date, 
+			String description) {
+		db.addItem(id, itemName, maker, date, description);
 	}
 
 	//	public static Order [] GetPendingOrders()

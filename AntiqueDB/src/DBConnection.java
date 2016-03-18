@@ -3,6 +3,7 @@
 // Date: 05/15/2014
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import com.mysql.jdbc.Statement;
@@ -10,7 +11,10 @@ import com.mysql.jdbc.Statement;
 
 // Connection class that handels DB connection.
 public class DBConnection {
+	
 	private Connection Conn ; 
+	
+	
 	// Initialize connection 
 	 DBConnection( String theConnectionURL, String theUserName, String theUserPassword)
 	 {
@@ -27,18 +31,17 @@ public class DBConnection {
 	       }
 	 } // end Initialization
 	
-		public void getALL(){
+		public void getALL(ArrayList<Item> list){
 
 			StringBuilder sb = new StringBuilder();
 			Statement statement;
 			
-			int theID;
-			String theItemName;
-			String theDes;
-			String category;
-			int thePrice;
-			
-			
+			int ID;
+			String itemName;
+			String maker;
+			String date;
+			String description;
+
 			try {
 				statement = (Statement) Conn.createStatement();
 				String queryString; 
@@ -47,24 +50,19 @@ public class DBConnection {
 				ResultSet rset = statement.executeQuery(queryString);
 
 				while(rset.next()) {
-					theID = rset.getInt(1);
-					theItemName = rset.getString(2);
-					theDes = rset.getString(3);
-					category = rset.getString(4);
-					thePrice = rset.getInt(5);
-					
-					//create a string of an item information to display in GUIs West panel
-					sb.append(theID);
-					sb.append(theItemName);
-					sb.append(theDes);
-					sb.append(category);
-					sb.append(thePrice);
+					ID = rset.getInt(1);
+			        itemName = rset.getString(2);
+			        maker = rset.getString(3);
+					date = rset.getString(4);
+					description = rset.getString(5);
 					
 					
+					Item item = new Item(ID, itemName, maker, date, description);
+					list.add(item);
 					
-					System.out.println("The ID is : " + theID);
-					System.out.println("The ID is : " + theItemName);
-					System.out.println("The ID is : " + theDes);
+//					System.out.println("The ID is : " + theID);
+//					System.out.println("The ID is : " + theItemName);
+//					System.out.println("The ID is : " + theDes);
 				}
 
 			} catch (SQLException e) {
@@ -72,6 +70,32 @@ public class DBConnection {
 				e.printStackTrace();
 			}
 
+		}
+		
+		public void addItem(int id, String itemName, String maker, String date, 
+				String description) {
+			Statement statement;
+			try {
+				statement = (Statement) Conn.createStatement();
+				String queryString; 
+				
+				//JDBC - Insert Records Example :  http://www.tutorialspoint.com/jdbc/jdbc-insert-records.htm
+				queryString = "INSERT INTO Item " +
+						 "VALUES (" + 
+						id + ", '" + 
+						itemName + "', '" + 
+					    maker + "', '" + 
+						date + "', '" + 
+						description + "')";
+                   
+				System.out.println("queryString : " + queryString);
+				int rset = statement.executeUpdate(queryString);
+				System.out.println("Insert result : " + rset);
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
 		}
 		
 		
