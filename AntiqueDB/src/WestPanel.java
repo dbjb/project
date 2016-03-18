@@ -40,6 +40,7 @@ public class WestPanel extends JPanel{
 		this.add(back, BorderLayout.NORTH);
 
 		model = new DefaultListModel();
+		model.addElement("Test");
 		for(Item e: itemList) {
 			model.addElement(e.itemName);
 		}

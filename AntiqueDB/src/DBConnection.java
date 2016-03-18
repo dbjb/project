@@ -31,6 +31,7 @@ public class DBConnection {
 
 			StringBuilder sb = new StringBuilder();
 			Statement statement;
+			
 			int theID;
 			String theItemName;
 			String theDes;
@@ -52,6 +53,15 @@ public class DBConnection {
 					category = rset.getString(4);
 					thePrice = rset.getInt(5);
 					
+					//create a string of an item information to display in GUIs West panel
+					sb.append(theID);
+					sb.append(theItemName);
+					sb.append(theDes);
+					sb.append(category);
+					sb.append(thePrice);
+					
+					
+					
 					System.out.println("The ID is : " + theID);
 					System.out.println("The ID is : " + theItemName);
 					System.out.println("The ID is : " + theDes);
@@ -63,6 +73,36 @@ public class DBConnection {
 			}
 
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	 
 	// run query
 //	public String SelectQuery(String query){
